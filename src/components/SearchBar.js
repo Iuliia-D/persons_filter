@@ -5,6 +5,19 @@ import FilterSvg from "../components/FilterSvg";
 function SearchBar({ persons, setSearchResults }) {
   const handleSubmit = (e) => e.preventDefault();
 
+  const handleSearchChange = (e) => {
+    if (!e.target.value) return setSearchResults(persons);
+
+    const resultsArray = persons.filter(
+      (person) =>
+        person.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        person.lastName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        person.userTag.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+
+    setSearchResults(resultsArray);
+  };
+
   return (
     <>
       <div>
@@ -19,6 +32,7 @@ function SearchBar({ persons, setSearchResults }) {
             type="text"
             placeholder="Ведите имя, тег, почту..."
             id="search"
+            onChange={handleSearchChange}
           />
           <button className={classes.filter__button}>
             <FilterSvg />

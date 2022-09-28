@@ -1,13 +1,17 @@
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const DetailsPage = ({ searchResults, setSortType }) => {
-  const { department, userTag } = useParams();
-  console.log(useParams());
+const DetailsPage = ({ persons }) => {
+  const { firstName, lastName } = useParams();
+
+  console.log(persons);
+
   return (
     <div>
+      <Link to={"/"}>Назад</Link>
       <p>Hello, DetailsPage</p>
       <div>
-        {department}, {userTag}
+        {firstName}, {lastName}
       </div>
     </div>
   );

@@ -1,26 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { getPersons } from "../api/axios";
-import { useState, useEffect } from "react";
+//import { getPersons } from "../api/axios";
+
 import classes from "./Layout.module.css";
 import SearchBar from "./SearchBar";
 
 const setActive = ({ isActive }) => (isActive ? classes.activeLink : " ");
 
-const Layout = () => {
-  const [persons, setPersons] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
-
-  useEffect(() => {
-    getPersons().then((json) => {
-      // const jsonAbc = sorter.sort(json).asc("firstName");
-      // console.log(jsonAbc);
-      // setPersons(jsonAbc);
-      // setSearchResults(jsonAbc);
-      setPersons(json);
-      setSearchResults(json);
-    });
-  }, []);
-
+const Layout = ({ persons, setSearchResults, searchResults }) => {
   return (
     <>
       <header>
