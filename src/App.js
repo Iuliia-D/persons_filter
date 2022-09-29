@@ -64,7 +64,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
         <Route
-          path="/:firstName/:lastName/"
+          path="/:firstName/:lastName"
           element={
             <DetailsPage searchResults={searchResults} persons={persons} />
           }

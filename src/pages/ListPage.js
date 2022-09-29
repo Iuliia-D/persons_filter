@@ -15,7 +15,6 @@ const ListPage = ({ searchResults, setSortType }) => {
 
   return (
     <div>
-      <p>Hello, List</p>
       <main>{content}</main>
       {
         // searchResults.map((person) => (
