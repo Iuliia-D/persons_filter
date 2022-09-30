@@ -3,17 +3,14 @@ import classes from "./DetailsPage.module.css";
 import ArrowBackSvg from "../components/ArrowBackSvg";
 
 const DetailsPage = ({ persons }) => {
-  const { firstName, lastName } = useParams();
+  const { id } = useParams();
 
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
 
   let curPerson;
   for (const person in persons) {
-    if (
-      persons[person].firstName === firstName &&
-      persons[person].lastName === lastName
-    ) {
+    if (persons[person].id === id) {
       curPerson = persons[person];
     }
   }
@@ -41,11 +38,10 @@ const DetailsPage = ({ persons }) => {
   return (
     <div className={classes.details}>
       <div className={classes.header}>
-        {/* <Link to={"/"}> */}
         <button className={classes.goBack} onClick={goBack}>
           <ArrowBackSvg />
         </button>
-        {/* </Link> */}
+
         <div className={classes.header_content}>
           <div className={classes.header_avatar}>
             <img src={curPerson.avatarUrl}></img>

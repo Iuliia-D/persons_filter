@@ -34,3 +34,6 @@ body {
   color: #050510;
   font-weight: 600;
 }
+.person_link {
+  text-decoration: none;
+}

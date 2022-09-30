@@ -15,6 +15,7 @@ import Layout from "./components/Layout";
 function App() {
   const [persons, setPersons] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getPersons().then((json) => {
@@ -24,8 +25,10 @@ function App() {
       // setSearchResults(jsonAbc);
       setPersons(json);
       setSearchResults(json);
+      setLoading(true);
     });
   }, []);
+
   return (
     <>
       <Routes>
@@ -39,7 +42,12 @@ function App() {
             />
           }
         >
-          <Route index element={<ListPage searchResults={searchResults} />} />
+          <Route
+            index
+            element={
+              <ListPage searchResults={searchResults} loading={loading} />
+            }
+          />
 
           <Route
             path="designers"
@@ -63,8 +71,9 @@ function App() {
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
+
         <Route
-          path="/:firstName/:lastName"
+          path="/:id"
           element={
             <DetailsPage searchResults={searchResults} persons={persons} />
           }
