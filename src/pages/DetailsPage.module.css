@@ -55,7 +55,8 @@
 .birthday {
   display: grid;
   gap: 5px;
-  grid-template-columns: 30px auto 15px;
+  grid-template-columns: 30px auto 60px;
+  margin-bottom: 10px;
 }
 .birthday_icon {
   background-image: url("../img/star.svg");

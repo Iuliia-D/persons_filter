@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import classes from "./DetailsPage.module.css";
 import ArrowBackSvg from "../components/ArrowBackSvg";
 
@@ -14,9 +14,7 @@ const DetailsPage = ({ persons }) => {
       curPerson = persons[person];
     }
   }
-  console.log(curPerson);
 
-  console.log(curPerson.phone.slice(2, 5));
   const [arr1, arr2, arr3, arr4, arr5] = [
     [curPerson.phone.slice(0, 2)],
     [curPerson.phone.slice(2, 5)],
@@ -24,9 +22,10 @@ const DetailsPage = ({ persons }) => {
     [curPerson.phone.slice(8, 10)],
     [curPerson.phone.slice(10, 12)],
   ];
-  console.log(arr1, arr2, arr3, arr4);
-  let arr = arr1.concat("(", arr2, ")", arr3, arr4).join("");
-  console.log(arr);
+
+  let phoneNumber = arr1
+    .concat(" ", "(", arr2, ")", " ", arr3, " ", arr4, " ", arr5)
+    .join("");
 
   let birthday = new Date(curPerson.birthday);
   let birth = birthday.toLocaleDateString("default", {
@@ -34,6 +33,12 @@ const DetailsPage = ({ persons }) => {
     month: "long",
     year: "numeric",
   });
+
+  const getAge = (dateString) => {
+    const ageInMilliseconds = new Date() - new Date(dateString);
+    return Math.floor(ageInMilliseconds / 1000 / 60 / 60 / 24 / 365);
+  };
+  const age = getAge(curPerson.birthday);
 
   return (
     <div className={classes.details}>
@@ -59,11 +64,11 @@ const DetailsPage = ({ persons }) => {
         <div className={classes.birthday}>
           <div className={classes.birthday_icon}></div>
           <span className={classes.birthday_date}>{birth}</span>
-          <span className={classes.birthday_age}>age</span>
+          <span className={classes.birthday_age}>{age} лет</span>
         </div>
         <div className={classes.phone}>
           <div className={classes.phone_icon}></div>
-          <span className={classes.phone_number}>{curPerson.phone}</span>
+          <span className={classes.phone_number}>{phoneNumber}</span>
         </div>
       </div>
     </div>
