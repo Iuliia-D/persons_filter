@@ -51,23 +51,45 @@ function App() {
 
           <Route
             path="designers"
-            element={<DisignersListPage searchResults={searchResults} />}
+            element={
+              <DisignersListPage
+                searchResults={searchResults}
+                loading={loading}
+              />
+            }
           />
           <Route
             path="analists"
-            element={<AnalystsListPage searchResults={searchResults} />}
+            element={
+              <AnalystsListPage
+                searchResults={searchResults}
+                loading={loading}
+              />
+            }
           />
           <Route
             path="managers"
-            element={<ManagersListPage searchResults={searchResults} />}
+            element={
+              <ManagersListPage
+                searchResults={searchResults}
+                loading={loading}
+              />
+            }
           />
           <Route
             path="ios"
-            element={<IosListPage searchResults={searchResults} />}
+            element={
+              <IosListPage searchResults={searchResults} loading={loading} />
+            }
           />
           <Route
             path="android"
-            element={<AndroidListPage searchResults={searchResults} />}
+            element={
+              <AndroidListPage
+                searchResults={searchResults}
+                loading={loading}
+              />
+            }
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

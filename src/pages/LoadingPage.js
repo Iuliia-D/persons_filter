@@ -2,10 +2,8 @@ import classes from "./LoadingPage.module.css";
 
 const LoadingPage = () => {
   const clientHeight = document.documentElement.clientHeight;
-  console.log(clientHeight);
   const amountItems = clientHeight / 104;
   const repeat = Math.round(amountItems);
-  console.log(repeat);
 
   const items = (
     <article>
