@@ -137,3 +137,26 @@ body {
   grid-template-columns: 10px auto;
   align-content: space-between;
 }
+
+.search__button--active {
+  color: #6534ff;
+}
+@media (min-width: 319px) and (max-width: 768px) {
+  .modal__content {
+    width: 50%;
+    height: 192px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1199px) {
+  .modal__content {
+    width: 30%;
+    height: 192px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal__content {
+    width: 373px;
+    height: 192px;
+  }
+}

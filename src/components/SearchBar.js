@@ -8,6 +8,7 @@ function SearchBar({ persons, setSearchResults }) {
   const handleSubmit = (e) => e.preventDefault();
 
   const [modalActive, setModalActive] = useState(false);
+  const [inputActive, setInputActive] = useState(false);
   const [sortType, setSortType] = useState();
 
   const handleSearchChange = (e) => {
@@ -28,7 +29,19 @@ function SearchBar({ persons, setSearchResults }) {
       <h1>Поиск</h1>
 
       <form className={classes.search} onSubmit={handleSubmit}>
-        <button className={classes.search__button}>
+        {/* <button className={classes.search__button} */}
+        <button
+          // className={
+          //   inputActive
+          //     ? "search__button search__button--active"
+          //     : "search__button"
+          // }
+          className={
+            inputActive
+              ? `${classes.search__button_active}`
+              : `${classes.search__button}`
+          }
+        >
           <SesrchSvg />
         </button>
         <input
@@ -37,6 +50,7 @@ function SearchBar({ persons, setSearchResults }) {
           placeholder="Ведите имя, тег, почту..."
           id="search"
           onChange={handleSearchChange}
+          onClick={() => setInputActive(true)}
         />
         <button
           className={classes.filter__button}
