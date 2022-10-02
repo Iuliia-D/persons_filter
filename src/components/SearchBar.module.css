@@ -55,25 +55,6 @@ header {
   cursor: pointer;
 }
 
-/* .tabs__list {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  list-style-type: none;
-  padding: 15px 10px 0 0;
-}
-.tabs__item {
-  padding: 10px 10px 0 10px;
-  font-weight: 500;
-  font-size: 15px;
-  color: #97979b;
-}
-.active {
-  border-bottom: 2px solid #6534ff;
-  color: #050510;
-  font-weight: 600;
-} 
-
 /* @media (min-width: 576px) {
   .search {
     font-size: 16px;
