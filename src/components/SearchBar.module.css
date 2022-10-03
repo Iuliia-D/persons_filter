@@ -20,8 +20,6 @@ header {
   grid-template-columns: 40px auto 40px;
 }
 
-.filter__button,
-.search__button,
 .search__input {
   background-color: #f7f7f8;
   border: none;
@@ -33,25 +31,17 @@ header {
 ::placeholder {
   color: #c3c3c6;
 }
-/* .search__button:focus {
-  color: #050510;
-} */
-
-.filter__button,
-.search__button {
-  place-content: center;
-  background-color: #f7f7f8;
-}
-.filter__button {
-  cursor: pointer;
-}
-
-.search__button_active {
+.search__icon {
   background-color: #f7f7f8;
   border: none;
   outline: none;
-  font-weight: 500;
-  font-size: 15px;
-  fill: black;
-  background-color: aqua;
+  padding: 8px;
+}
+
+.filter__button {
+  background-color: #f7f7f8;
+  border: none;
+  outline: none;
+  place-content: center;
+  cursor: pointer;
 }

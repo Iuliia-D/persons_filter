@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./SearchBar.module.css";
-import SesrchSvg from "../components/SearchSvg";
+//import SesrchSvg from "../components/SearchSvg";
+import { ReactComponent as Search } from "../icon/search-icon.svg";
 import FilterSvg from "../components/FilterSvg";
 import Modal from "../components/Modal";
 
@@ -29,28 +30,18 @@ function SearchBar({ persons, setSearchResults }) {
       <h1>Поиск</h1>
 
       <form className={classes.search} onSubmit={handleSubmit}>
-        {/* <button className={classes.search__button} */}
-        <button
-          // className={
-          //   inputActive
-          //     ? "search__button search__button--active"
-          //     : "search__button"
-          // }
-          className={
-            inputActive
-              ? `${classes.search__button_active}`
-              : `${classes.search__button}`
-          }
-        >
-          <SesrchSvg />
-        </button>
+        <div className={classes.search__icon}>
+          <Search
+            style={inputActive ? { color: "#050510" } : { color: "#c3c3c6" }}
+          />
+        </div>
         <input
           className={classes.search__input}
           type="text"
           placeholder="Ведите имя, тег, почту..."
           id="search"
           onChange={handleSearchChange}
-          onClick={() => setInputActive(true)}
+          onInput={() => setInputActive(true)}
         />
         <button
           className={classes.filter__button}
