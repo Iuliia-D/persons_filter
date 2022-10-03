@@ -1,19 +1,27 @@
 import { useState } from "react";
 import classes from "./SearchBar.module.css";
-//import SesrchSvg from "../components/SearchSvg";
 import { ReactComponent as Search } from "../icon/search-icon.svg";
 import FilterSvg from "../components/FilterSvg";
-import Modal from "../components/Modal";
 
-function SearchBar({ persons, setSearchResults }) {
+function SearchBar({
+  persons,
+  setSearchResults,
+  setModalActive,
+  setSearchParams,
+  searchParams,
+}) {
   const handleSubmit = (e) => e.preventDefault();
 
-  const [modalActive, setModalActive] = useState(false);
   const [inputActive, setInputActive] = useState(false);
-  const [sortType, setSortType] = useState();
+
+  const personQuery = searchParams.get("person") || "";
 
   const handleSearchChange = (e) => {
     if (!e.target.value) return setSearchResults(persons);
+
+    const form = e.target;
+    const query = form.search.value;
+    setSearchParams({ person: query });
 
     const resultsArray = persons.filter(
       (person) =>
@@ -29,7 +37,11 @@ function SearchBar({ persons, setSearchResults }) {
     <>
       <h1>Поиск</h1>
 
-      <form className={classes.search} onSubmit={handleSubmit}>
+      <form
+        className={classes.search}
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
         <div className={classes.search__icon}>
           <Search
             style={inputActive ? { color: "#050510" } : { color: "#c3c3c6" }}
@@ -38,6 +50,7 @@ function SearchBar({ persons, setSearchResults }) {
         <input
           className={classes.search__input}
           type="text"
+          name="search"
           placeholder="Ведите имя, тег, почту..."
           id="search"
           onChange={handleSearchChange}
@@ -49,12 +62,7 @@ function SearchBar({ persons, setSearchResults }) {
         >
           <FilterSvg />
         </button>
-        <Modal
-          active={modalActive}
-          setActive={setModalActive}
-          sortType={sortType}
-          setSortType={setSortType}
-        />
+
         {/* <p>{sortType}</p> */}
       </form>
     </>

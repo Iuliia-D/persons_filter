@@ -4,10 +4,12 @@ import sorter from "sort-nested-json";
 import NotFoundPage from "./NotFoundPage";
 import LoadingPage from "./LoadingPage";
 
-const DesignersListPage = ({ searchResults, loading }) => {
-  let results = sorter
-    .sort(searchResults)
-    .asc("firstName")
+const DesignersListPage = ({ searchResults, loading, personQuery }) => {
+  let results = searchResults
+    // sorter
+    //   .sort(searchResults)
+    //   .asc("firstName")
+    .filter((person) => person.firstName.includes(personQuery))
     .filter((person) => person.department.includes("design"))
     .map((person) => (
       <Link key={person.id} to={`/${person.id}`} className="person_link">

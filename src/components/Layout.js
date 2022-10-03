@@ -2,7 +2,12 @@ import { NavLink, Outlet } from "react-router-dom";
 //import classes from "./Layout.module.css";
 import SearchBar from "./SearchBar";
 
-const Layout = ({ persons, setSearchResults, searchResults }) => {
+const Layout = ({
+  persons,
+  setSearchResults,
+  searchResults,
+  setModalActive,
+}) => {
   return (
     <>
       <header>
@@ -10,6 +15,7 @@ const Layout = ({ persons, setSearchResults, searchResults }) => {
           persons={persons}
           setSearchResults={setSearchResults}
           searchResults={searchResults}
+          setModalActive={setModalActive}
         />
         <div className="tabs__list">
           <NavLink to="/" end className="tabs__item">

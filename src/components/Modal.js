@@ -1,7 +1,7 @@
 import CloseModalSvg from "../components/CloseModalSvg";
 //import classes from "./Modal.modules.css";
 
-function Modal({ active, setActive, sortType, setSortType }) {
+function Modal({ active, setActive, searchParams, setSearchParams }) {
   return (
     <div
       className={active ? "modal active--modal" : "modal"}
@@ -27,11 +27,18 @@ function Modal({ active, setActive, sortType, setSortType }) {
             <input
               type="radio"
               name="sort"
-              value={"abc"}
               id="radioBtn1"
               checked={true}
               className="input_item"
-              onChange={(e) => setSortType(e.target.value)}
+              value={searchParams.get("abc") || ""}
+              onChange={(e) => {
+                let filter = e.target.value;
+                if (filter) {
+                  setSearchParams({ filter });
+                } else {
+                  setSearchParams({});
+                }
+              }}
             />
             <label htmlFor="radioBtn1">По алфавиту</label>
           </div>
@@ -39,10 +46,18 @@ function Modal({ active, setActive, sortType, setSortType }) {
             <input
               type="radio"
               name="sort"
-              value="birthday"
               id="radioBtn2"
               className="input_item"
-              onChange={(e) => setSortType(e.target.value)}
+              value={searchParams.get("birthday") || ""}
+              onChange={(e) => {
+                let filter = e.target.value;
+                if (filter) {
+                  setSearchParams({ filter });
+                } else {
+                  setSearchParams({});
+                }
+                console.log(searchParams);
+              }}
             />
             <label htmlFor="radioBtn1">По дню рождения</label>
           </div>

@@ -1,5 +1,5 @@
 import { getPersons } from "./api/axios";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import ListPage from "./pages/ListPage";
@@ -11,18 +11,19 @@ import IosListPage from "./pages/IosListPage.js";
 import AndroidListPage from "./pages/AndroidListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Layout from "./components/Layout";
+import Modal from "./components/Modal";
 
 function App() {
   const [persons, setPersons] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const [modalActive, setModalActive] = useState(false);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     getPersons().then((json) => {
-      // const jsonAbc = sorter.sort(json).asc("firstName");
-      // console.log(jsonAbc);
-      // setPersons(jsonAbc);
-      // setSearchResults(jsonAbc);
       setPersons(json);
       setSearchResults(json);
       setLoading(true);
@@ -31,6 +32,14 @@ function App() {
 
   return (
     <>
+      <Modal
+        active={modalActive}
+        setActive={setModalActive}
+        // sortType={sortType}
+        // setSortType={setSortType}
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
+      />
       <Routes>
         <Route
           path="/"
@@ -39,13 +48,21 @@ function App() {
               persons={persons}
               setSearchResults={setSearchResults}
               searchResults={searchResults}
+              setModalActive={setModalActive}
+              setSearchParams={setSearchParams}
+              searchParams={searchParams}
             />
           }
         >
           <Route
             index
             element={
-              <ListPage searchResults={searchResults} loading={loading} />
+              <ListPage
+                searchResults={searchResults}
+                loading={loading}
+                persons={persons}
+                searchParams={searchParams}
+              />
             }
           />
 
@@ -55,6 +72,7 @@ function App() {
               <DisignersListPage
                 searchResults={searchResults}
                 loading={loading}
+                // personQuery={personQuery}
               />
             }
           />
