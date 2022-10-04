@@ -138,9 +138,6 @@ body {
   align-content: space-between;
 }
 
-.search__button--active {
-  color: #6534ff;
-}
 @media (min-width: 319px) and (max-width: 768px) {
   .modal__content {
     width: 50%;

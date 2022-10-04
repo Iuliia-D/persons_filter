@@ -11,46 +11,36 @@ import IosListPage from "./pages/IosListPage.js";
 import AndroidListPage from "./pages/AndroidListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Layout from "./components/Layout";
-import Modal from "./components/Modal";
 
 function App() {
   const [persons, setPersons] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
+  // const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [modalActive, setModalActive] = useState(false);
-
   const [searchParams, setSearchParams] = useSearchParams();
+  const personQuery = searchParams.get("person") || "";
+  const birthday = searchParams.has("birthday");
 
   useEffect(() => {
     getPersons().then((json) => {
       setPersons(json);
-      setSearchResults(json);
+
       setLoading(true);
     });
   }, []);
 
   return (
     <>
-      <Modal
-        active={modalActive}
-        setActive={setModalActive}
-        // sortType={sortType}
-        // setSortType={setSortType}
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-      />
       <Routes>
         <Route
           path="/"
           element={
             <Layout
               persons={persons}
-              setSearchResults={setSearchResults}
-              searchResults={searchResults}
-              setModalActive={setModalActive}
               setSearchParams={setSearchParams}
               searchParams={searchParams}
+              personQuery={personQuery}
+              birthday={birthday}
             />
           }
         >
@@ -58,10 +48,10 @@ function App() {
             index
             element={
               <ListPage
-                searchResults={searchResults}
                 loading={loading}
                 persons={persons}
                 searchParams={searchParams}
+                personQuery={personQuery}
               />
             }
           />
@@ -70,9 +60,10 @@ function App() {
             path="designers"
             element={
               <DisignersListPage
-                searchResults={searchResults}
                 loading={loading}
-                // personQuery={personQuery}
+                persons={persons}
+                searchParams={searchParams}
+                personQuery={personQuery}
               />
             }
           />
@@ -80,8 +71,10 @@ function App() {
             path="analists"
             element={
               <AnalystsListPage
-                searchResults={searchResults}
                 loading={loading}
+                persons={persons}
+                searchParams={searchParams}
+                personQuery={personQuery}
               />
             }
           />
@@ -89,35 +82,40 @@ function App() {
             path="managers"
             element={
               <ManagersListPage
-                searchResults={searchResults}
+                // searchResults={searchResults}
                 loading={loading}
+                persons={persons}
+                searchParams={searchParams}
+                personQuery={personQuery}
               />
             }
           />
           <Route
             path="ios"
             element={
-              <IosListPage searchResults={searchResults} loading={loading} />
+              <IosListPage
+                loading={loading}
+                persons={persons}
+                searchParams={searchParams}
+                personQuery={personQuery}
+              />
             }
           />
           <Route
             path="android"
             element={
               <AndroidListPage
-                searchResults={searchResults}
                 loading={loading}
+                persons={persons}
+                searchParams={searchParams}
+                personQuery={personQuery}
               />
             }
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 
-        <Route
-          path="/:id"
-          element={
-            <DetailsPage searchResults={searchResults} persons={persons} />
-          }
-        />
+        <Route path="/:id" element={<DetailsPage persons={persons} />} />
       </Routes>
     </>
   );

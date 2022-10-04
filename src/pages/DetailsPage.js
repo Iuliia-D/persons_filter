@@ -49,7 +49,7 @@ const DetailsPage = ({ persons }) => {
 
         <div className={classes.header_content}>
           <div className={classes.header_avatar}>
-            <img src={curPerson.avatarUrl}></img>
+            <img src={curPerson.avatarUrl} alt="person avatar"></img>
           </div>
           <div className={classes.userName}>
             <p className={classes.userName_name}>

@@ -4,18 +4,22 @@ import SearchBar from "./SearchBar";
 
 const Layout = ({
   persons,
-  setSearchResults,
-  searchResults,
   setModalActive,
+  setSearchParams,
+  searchParams,
+  personQuery,
+  birthday,
 }) => {
   return (
     <>
       <header>
         <SearchBar
           persons={persons}
-          setSearchResults={setSearchResults}
-          searchResults={searchResults}
           setModalActive={setModalActive}
+          setSearchParams={setSearchParams}
+          searchParams={searchParams}
+          personQuery={personQuery}
+          birthday={birthday}
         />
         <div className="tabs__list">
           <NavLink to="/" end className="tabs__item">

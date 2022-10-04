@@ -2,41 +2,51 @@ import { useState } from "react";
 import classes from "./SearchBar.module.css";
 import { ReactComponent as Search } from "../icon/search-icon.svg";
 import FilterSvg from "../components/FilterSvg";
+import Modal from "../components/Modal";
 
 function SearchBar({
   persons,
-  setSearchResults,
-  setModalActive,
+  // setSearchResults,
   setSearchParams,
   searchParams,
+  personQuery,
+  birthday,
 }) {
-  const handleSubmit = (e) => e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   const [inputActive, setInputActive] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
+  const [sortType, setSortType] = useState();
 
-  const personQuery = searchParams.get("person") || "";
+  //   const resultsArray = persons.filter(
+  //     (person) =>
+  //       person.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+  //       person.lastName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+  //       person.userTag.toLowerCase().includes(e.target.value.toLowerCase())
+  //   );
 
+  //   setSearchResults(resultsArray);
+  // };
   const handleSearchChange = (e) => {
-    if (!e.target.value) return setSearchResults(persons);
-
+    e.preventDefault();
     const form = e.target;
-    const query = form.search.value;
+    const query = form.value;
+
     setSearchParams({ person: query });
 
-    const resultsArray = persons.filter(
-      (person) =>
-        person.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        person.lastName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        person.userTag.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-
-    setSearchResults(resultsArray);
+    // searchResults.filter(
+    //   (person) =>
+    //     person.firstName.toLowerCase().includes(personQuery.toLowerCase()) ||
+    //     person.lastName.toLowerCase().includes(personQuery.toLowerCase()) ||
+    //     person.userTag.toLowerCase().includes(personQuery.toLowerCase())
+    // );
   };
 
   return (
     <>
       <h1>Поиск</h1>
-
       <form
         className={classes.search}
         onSubmit={handleSubmit}
@@ -62,6 +72,14 @@ function SearchBar({
         >
           <FilterSvg />
         </button>
+        <Modal
+          active={modalActive}
+          setActive={setModalActive}
+          // searchParams={searchParams}
+          // setSearchParams={setSearchParams}
+          sortType={sortType}
+          setSortType={setSortType}
+        />
 
         {/* <p>{sortType}</p> */}
       </form>
