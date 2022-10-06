@@ -14,7 +14,6 @@ import Layout from "./components/Layout";
 
 function App() {
   const [persons, setPersons] = useState([]);
-  // const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +23,6 @@ function App() {
   useEffect(() => {
     getPersons().then((json) => {
       setPersons(json);
-
       setLoading(true);
     });
   }, []);
@@ -82,7 +80,6 @@ function App() {
             path="managers"
             element={
               <ManagersListPage
-                // searchResults={searchResults}
                 loading={loading}
                 persons={persons}
                 searchParams={searchParams}
