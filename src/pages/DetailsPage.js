@@ -17,10 +17,6 @@ const DetailsPage = () => {
       .then((respons) => setPersons(respons.data.items));
   }, []);
 
-  // persons.length === 0 ? console.log("no array") : console.log("is array");
-  // console.log(persons);
-  // console.log(id);
-
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
 
@@ -33,6 +29,7 @@ const DetailsPage = () => {
     });
     return birth;
   };
+
   const getAge = (dateString) => {
     const ageInMilliseconds = new Date() - new Date(dateString);
     return Math.floor(ageInMilliseconds / 1000 / 60 / 60 / 24 / 365);

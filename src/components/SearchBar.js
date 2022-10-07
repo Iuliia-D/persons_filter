@@ -4,44 +4,20 @@ import { ReactComponent as Search } from "../icon/search-icon.svg";
 import FilterSvg from "../components/FilterSvg";
 import Modal from "../components/Modal";
 
-function SearchBar({
-  persons,
-  // setSearchResults,
-  setSearchParams,
-  searchParams,
-  personQuery,
-  birthday,
-}) {
+function SearchBar({ setSearchParams, sortTypes, handleSort }) {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   const [inputActive, setInputActive] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-  const [sortType, setSortType] = useState();
 
-  //   const resultsArray = persons.filter(
-  //     (person) =>
-  //       person.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-  //       person.lastName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-  //       person.userTag.toLowerCase().includes(e.target.value.toLowerCase())
-  //   );
-
-  //   setSearchResults(resultsArray);
-  // };
   const handleSearchChange = (e) => {
     e.preventDefault();
     const form = e.target;
     const query = form.value;
 
     setSearchParams({ person: query });
-
-    // searchResults.filter(
-    //   (person) =>
-    //     person.firstName.toLowerCase().includes(personQuery.toLowerCase()) ||
-    //     person.lastName.toLowerCase().includes(personQuery.toLowerCase()) ||
-    //     person.userTag.toLowerCase().includes(personQuery.toLowerCase())
-    // );
   };
 
   return (
@@ -75,13 +51,9 @@ function SearchBar({
         <Modal
           active={modalActive}
           setActive={setModalActive}
-          // searchParams={searchParams}
-          // setSearchParams={setSearchParams}
-          sortType={sortType}
-          setSortType={setSortType}
+          handleSort={handleSort}
+          sortTypes={sortTypes}
         />
-
-        {/* <p>{sortType}</p> */}
       </form>
     </>
   );

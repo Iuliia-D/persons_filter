@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
 import classes from "./Layout.module.css";
 import SearchBar from "./SearchBar";
 
@@ -10,9 +11,43 @@ const Layout = ({
   personQuery,
   birthday,
   tabsTypes,
+  tabType,
   toggleTab,
   isActive,
+  sortType,
+  handleSort,
+  sortTypes,
 }) => {
+  // const departments = [
+  //   "all",
+  //   "design",
+  //   "analytics",
+  //   "management",
+  //   "ios",
+  //   "android",
+  // ];
+
+  // const [activeDepartment, setActiveDepartment] = useState(departments[0]);
+  // const [activeClass, setActiveClass] = useState(departments[0]);
+
+  // const hendleClickDep = (ind) => {
+  //   setActiveDepartment(departments[ind]);
+  //   setActiveClass(departments[ind]);
+  // };
+
+  // departments.map((dep, ind) => (
+  //   <p
+  //     className={
+  //       activeClass
+  //         ? `${classes.tabs__item}`
+  //         : `${classes.active} ${classes.tabs__item}`
+  //     }
+  //     onClick={() => hendleClickDep(ind)}
+  //   >
+  //     {dep[ind]}
+  //   </p>
+  // ));
+
   return (
     <>
       <header>
@@ -23,6 +58,9 @@ const Layout = ({
           searchParams={searchParams}
           personQuery={personQuery}
           birthday={birthday}
+          sortType={sortType}
+          handleSort={handleSort}
+          sortTypes={sortTypes}
         />
         <nav className={classes.tabs__list}>
           <button

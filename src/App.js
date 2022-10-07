@@ -27,11 +27,11 @@ function App() {
   const [currentPersons, setCurrentPersons] = useState([]);
   const [tabType, setTabType] = useState(tabsTypes.all);
   const [isActive, setActive] = useState(tabsTypes.all);
-  //const [sortType, setSortType] = useState(sortType.abc)
+  const [sortType, setSortType] = useState(sortTypes.abc);
+  //const [monthDifference, setMonthDifference] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const personQuery = searchParams.get("person") || "";
-  // const birthday = searchParams.has("birthday");
 
   useEffect(() => {
     getPersons().then((json) => {
@@ -44,7 +44,10 @@ function App() {
     setTabType(index);
     setActive(index);
   };
-  console.log(tabType);
+
+  const handleSort = (index) => {
+    setSortType(index);
+  };
 
   useEffect(() => {
     const curPersons = persons.filter(
@@ -53,10 +56,23 @@ function App() {
         person.lastName.toLowerCase().includes(personQuery.toLowerCase()) ||
         person.userTag.toLowerCase().includes(personQuery.toLowerCase())
     );
-    //.sort(...sortType)
     setCurrentPersons(curPersons);
   }, [personQuery, persons]);
-  console.log(currentPersons);
+
+  // useEffect(() => {
+  //   persons.map((person) => {
+  //     const now = new Date();
+  //     const curMonth = now.getMonth();
+
+  //     const personBirthday = new Date(person.birthday);
+  //     const personBMonth = personBirthday.getMonth();
+
+  //     const difference = personBMonth - curMonth;
+
+  //     difference < 0 ? setMonthDifference(true) : setMonthDifference(false);
+  //     console.log(monthDifference);
+  //   });
+  // }, [persons]);
 
   return (
     <>
@@ -70,8 +86,12 @@ function App() {
               searchParams={searchParams}
               personQuery={personQuery}
               tabsTypes={tabsTypes}
+              tabType={tabType}
               toggleTab={toggleTab}
               isActive={isActive}
+              sortType={sortType}
+              handleSort={handleSort}
+              sortTypes={sortTypes}
             />
           }
         >
@@ -85,6 +105,7 @@ function App() {
                 personQuery={personQuery}
                 currentPersons={currentPersons}
                 tabType={tabType}
+                sortType={sortType}
               />
             }
           />

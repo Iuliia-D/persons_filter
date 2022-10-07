@@ -1,7 +1,7 @@
 import CloseModalSvg from "../components/CloseModalSvg";
 import classes from "./Modal.module.css";
 
-function Modal({ active, setActive, sortType, setSortType }) {
+function Modal({ active, setActive, sortTypes, handleSort }) {
   return (
     <div
       className={
@@ -37,9 +37,10 @@ function Modal({ active, setActive, sortType, setSortType }) {
               name="sort"
               value={"abc"}
               id="radioBtn1"
-              checked={true}
+              defaultChecked
               className={classes.input_item}
-              onChange={(e) => setSortType(e.target.value)}
+              onClick={() => handleSort(sortTypes.abc)}
+              onChange={() => setActive(false)}
             />
             <label htmlFor="radioBtn1">По алфавиту</label>
           </div>
@@ -47,10 +48,11 @@ function Modal({ active, setActive, sortType, setSortType }) {
             <input
               type="radio"
               name="sort"
-              value="birthday"
+              value={"birthday"}
               id="radioBtn2"
               className={classes.input_item}
-              onChange={(e) => setSortType(e.target.value)}
+              onClick={() => handleSort(sortTypes.birthday)}
+              onChange={() => setActive(false)}
             />
             <label htmlFor="radioBtn1">По дню рождения</label>
           </div>
