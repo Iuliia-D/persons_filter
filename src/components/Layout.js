@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+//import { useState, useEffect } from "react";
 import classes from "./Layout.module.css";
 import SearchBar from "./SearchBar";
 

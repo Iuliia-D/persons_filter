@@ -104,7 +104,7 @@
 
 @media (min-width: 319px) and (max-width: 768px) {
   .modal__content {
-    width: 50%;
+    width: 70%;
     height: 192px;
   }
 }
