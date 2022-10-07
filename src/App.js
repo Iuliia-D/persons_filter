@@ -4,21 +4,33 @@ import { useState, useEffect } from "react";
 
 import ListPage from "./pages/ListPage";
 import DetailsPage from "./pages/DetailsPage";
-import DisignersListPage from "./pages/DesignersListPage";
-import AnalystsListPage from "./pages/AnalystsListPage";
-import ManagersListPage from "./pages/ManagersListPage";
-import IosListPage from "./pages/IosListPage.js";
-import AndroidListPage from "./pages/AndroidListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Layout from "./components/Layout";
+
+const sortTypes = {
+  abc: 1,
+  birthday: 2,
+};
+const tabsTypes = {
+  all: "all",
+  design: "design",
+  analytics: "analytics",
+  management: "management",
+  ios: "ios",
+  android: "android",
+};
 
 function App() {
   const [persons, setPersons] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const [currentPersons, setCurrentPersons] = useState([]);
+  const [tabType, setTabType] = useState(tabsTypes.all);
+  //const [sortType, setSortType] = useState(sortType.abc)
+
   const [searchParams, setSearchParams] = useSearchParams();
   const personQuery = searchParams.get("person") || "";
-  const birthday = searchParams.has("birthday");
+  // const birthday = searchParams.has("birthday");
 
   useEffect(() => {
     getPersons().then((json) => {
@@ -26,6 +38,23 @@ function App() {
       setLoading(true);
     });
   }, []);
+
+  const toggleTab = (index) => {
+    setTabType(index);
+  };
+  console.log(tabType);
+
+  useEffect(() => {
+    const curPersons = persons.filter(
+      (person) =>
+        person.firstName.toLowerCase().includes(personQuery.toLowerCase()) ||
+        person.lastName.toLowerCase().includes(personQuery.toLowerCase()) ||
+        person.userTag.toLowerCase().includes(personQuery.toLowerCase())
+    );
+    //.sort(...sortType)
+    setCurrentPersons(curPersons);
+  }, [personQuery, persons]);
+  console.log(currentPersons);
 
   return (
     <>
@@ -38,7 +67,8 @@ function App() {
               setSearchParams={setSearchParams}
               searchParams={searchParams}
               personQuery={personQuery}
-              birthday={birthday}
+              tabsTypes={tabsTypes}
+              toggleTab={toggleTab}
             />
           }
         >
@@ -50,65 +80,12 @@ function App() {
                 persons={persons}
                 searchParams={searchParams}
                 personQuery={personQuery}
+                currentPersons={currentPersons}
+                tabType={tabType}
               />
             }
           />
 
-          <Route
-            path="designers"
-            element={
-              <DisignersListPage
-                loading={loading}
-                persons={persons}
-                searchParams={searchParams}
-                personQuery={personQuery}
-              />
-            }
-          />
-          <Route
-            path="analists"
-            element={
-              <AnalystsListPage
-                loading={loading}
-                persons={persons}
-                searchParams={searchParams}
-                personQuery={personQuery}
-              />
-            }
-          />
-          <Route
-            path="managers"
-            element={
-              <ManagersListPage
-                loading={loading}
-                persons={persons}
-                searchParams={searchParams}
-                personQuery={personQuery}
-              />
-            }
-          />
-          <Route
-            path="ios"
-            element={
-              <IosListPage
-                loading={loading}
-                persons={persons}
-                searchParams={searchParams}
-                personQuery={personQuery}
-              />
-            }
-          />
-          <Route
-            path="android"
-            element={
-              <AndroidListPage
-                loading={loading}
-                persons={persons}
-                searchParams={searchParams}
-                personQuery={personQuery}
-              />
-            }
-          />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 

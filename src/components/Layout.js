@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 //import classes from "./Layout.module.css";
 import SearchBar from "./SearchBar";
 
@@ -9,6 +9,8 @@ const Layout = ({
   searchParams,
   personQuery,
   birthday,
+  tabsTypes,
+  toggleTab,
 }) => {
   return (
     <>
@@ -21,7 +23,46 @@ const Layout = ({
           personQuery={personQuery}
           birthday={birthday}
         />
-        <div className="tabs__list">
+        <nav className="tabs__list">
+          <button
+            className="tabs__item"
+            onClick={() => toggleTab(tabsTypes.all)}
+          >
+            Все
+          </button>
+          <button
+            className="tabs__item"
+            onClick={() => toggleTab(tabsTypes.design)}
+          >
+            Designers
+          </button>
+          <button
+            className="tabs__item"
+            onClick={() => toggleTab(tabsTypes.analytics)}
+          >
+            Analysts
+          </button>
+          <button
+            className="tabs__item"
+            onClick={() => toggleTab(tabsTypes.management)}
+          >
+            Managers
+          </button>
+          <button
+            className="tabs__item"
+            onClick={() => toggleTab(tabsTypes.ios)}
+          >
+            iOS
+          </button>
+          <button
+            className="tabs__item"
+            onClick={() => toggleTab(tabsTypes.android)}
+          >
+            Android
+          </button>
+        </nav>
+
+        {/* <div className="tabs__list">
           <NavLink to="/" end className="tabs__item">
             Все
           </NavLink>
@@ -40,7 +81,7 @@ const Layout = ({
           <NavLink to="android" className="tabs__item">
             Android
           </NavLink>
-        </div>
+        </div> */}
       </header>
 
       <Outlet />
