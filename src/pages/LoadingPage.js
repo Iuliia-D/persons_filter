@@ -6,7 +6,7 @@ const LoadingPage = () => {
   const repeat = Math.round(amountItems);
 
   const items = (
-    <article>
+    <article className={classes.loading_container}>
       <div className={classes.avatar}></div>
       <div className={classes.person_description}>
         <div className={classes.person_description_1}></div>

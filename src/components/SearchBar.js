@@ -1,35 +1,33 @@
 import { useState } from "react";
 import classes from "./SearchBar.module.css";
-//import SesrchSvg from "../components/SearchSvg";
 import { ReactComponent as Search } from "../icon/search-icon.svg";
 import FilterSvg from "../components/FilterSvg";
 import Modal from "../components/Modal";
 
-function SearchBar({ persons, setSearchResults }) {
-  const handleSubmit = (e) => e.preventDefault();
+function SearchBar({ setSearchParams, sortTypes, handleSort }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
-  const [modalActive, setModalActive] = useState(false);
   const [inputActive, setInputActive] = useState(false);
-  const [sortType, setSortType] = useState();
+  const [modalActive, setModalActive] = useState(false);
 
   const handleSearchChange = (e) => {
-    if (!e.target.value) return setSearchResults(persons);
+    e.preventDefault();
+    const form = e.target;
+    const query = form.value;
 
-    const resultsArray = persons.filter(
-      (person) =>
-        person.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        person.lastName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        person.userTag.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-
-    setSearchResults(resultsArray);
+    setSearchParams({ person: query });
   };
 
   return (
     <>
       <h1>Поиск</h1>
-
-      <form className={classes.search} onSubmit={handleSubmit}>
+      <form
+        className={classes.search}
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
         <div className={classes.search__icon}>
           <Search
             style={inputActive ? { color: "#050510" } : { color: "#c3c3c6" }}
@@ -38,6 +36,7 @@ function SearchBar({ persons, setSearchResults }) {
         <input
           className={classes.search__input}
           type="text"
+          name="search"
           placeholder="Ведите имя, тег, почту..."
           id="search"
           onChange={handleSearchChange}
@@ -52,10 +51,9 @@ function SearchBar({ persons, setSearchResults }) {
         <Modal
           active={modalActive}
           setActive={setModalActive}
-          sortType={sortType}
-          setSortType={setSortType}
+          handleSort={handleSort}
+          sortTypes={sortTypes}
         />
-        {/* <p>{sortType}</p> */}
       </form>
     </>
   );

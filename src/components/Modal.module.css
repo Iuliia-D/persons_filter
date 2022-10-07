@@ -13,7 +13,7 @@
   transition: 0, 5s;
 }
 
-.modal.active--modal {
+.modal.active__modal {
   opacity: 1;
   pointer-events: all;
 }
@@ -27,7 +27,7 @@
   transform: scale(0.5);
   transition: 0.4s all;
 }
-.modal__content.active--modal {
+.modal__content.active__modal {
   transform: scale(1);
 }
 
@@ -100,4 +100,24 @@
   gap: 20px;
   grid-template-columns: 10px auto;
   align-content: space-between;
+}
+
+@media (min-width: 319px) and (max-width: 768px) {
+  .modal__content {
+    width: 70%;
+    height: 192px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1199px) {
+  .modal__content {
+    width: 30%;
+    height: 192px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal__content {
+    width: 373px;
+    height: 192px;
+  }
 }

@@ -1,36 +1,141 @@
-import { NavLink, Outlet } from "react-router-dom";
-//import classes from "./Layout.module.css";
+import { Outlet } from "react-router-dom";
+//import { useState, useEffect } from "react";
+import classes from "./Layout.module.css";
 import SearchBar from "./SearchBar";
 
-const Layout = ({ persons, setSearchResults, searchResults }) => {
+const Layout = ({
+  persons,
+  setModalActive,
+  setSearchParams,
+  searchParams,
+  personQuery,
+  birthday,
+  tabsTypes,
+  tabType,
+  toggleTab,
+  isActive,
+  sortType,
+  handleSort,
+  sortTypes,
+}) => {
+  // const departments = [
+  //   "all",
+  //   "design",
+  //   "analytics",
+  //   "management",
+  //   "ios",
+  //   "android",
+  // ];
+
+  // const [activeDepartment, setActiveDepartment] = useState(departments[0]);
+  // const [activeClass, setActiveClass] = useState(departments[0]);
+
+  // const hendleClickDep = (ind) => {
+  //   setActiveDepartment(departments[ind]);
+  //   setActiveClass(departments[ind]);
+  // };
+
+  // departments.map((dep, ind) => (
+  //   <p
+  //     className={
+  //       activeClass
+  //         ? `${classes.tabs__item}`
+  //         : `${classes.active} ${classes.tabs__item}`
+  //     }
+  //     onClick={() => hendleClickDep(ind)}
+  //   >
+  //     {dep[ind]}
+  //   </p>
+  // ));
+
   return (
     <>
       <header>
         <SearchBar
           persons={persons}
-          setSearchResults={setSearchResults}
-          searchResults={searchResults}
+          setModalActive={setModalActive}
+          setSearchParams={setSearchParams}
+          searchParams={searchParams}
+          personQuery={personQuery}
+          birthday={birthday}
+          sortType={sortType}
+          handleSort={handleSort}
+          sortTypes={sortTypes}
         />
-        <div className="tabs__list">
-          <NavLink to="/" end className="tabs__item">
+        <nav className={classes.tabs__list}>
+          <button
+            className={
+              isActive === tabsTypes.all
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.all);
+            }}
+          >
             Все
-          </NavLink>
-          <NavLink to="designers" className="tabs__item">
+          </button>
+          <button
+            className={
+              isActive === tabsTypes.design
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.design);
+            }}
+          >
             Designers
-          </NavLink>
-          <NavLink to="analists" className="tabs__item">
+          </button>
+          <button
+            className={
+              isActive === tabsTypes.analytics
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.analytics);
+            }}
+          >
             Analysts
-          </NavLink>
-          <NavLink to="managers" className="tabs__item">
+          </button>
+          <button
+            className={
+              isActive === tabsTypes.management
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.management);
+            }}
+          >
             Managers
-          </NavLink>
-          <NavLink to="ios" className="tabs__item">
+          </button>
+          <button
+            className={
+              isActive === tabsTypes.ios
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.ios);
+            }}
+          >
             iOS
-          </NavLink>
-          <NavLink to="android" className="tabs__item">
+          </button>
+          <button
+            className={
+              isActive === tabsTypes.android
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.android);
+            }}
+          >
             Android
-          </NavLink>
-        </div>
+          </button>
+        </nav>
       </header>
 
       <Outlet />
