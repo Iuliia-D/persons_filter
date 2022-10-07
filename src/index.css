@@ -9,35 +9,7 @@ body {
   font-family: "Inter", "Open Sans", sans-serif;
   background-color: #ffffff;
 }
-button {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  cursor: pointer;
-}
 
-.tabs__list {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  list-style-type: none;
-  padding: 15px 10px 0 16px;
-  border-bottom: 1px solid #f7f7f8;
-}
-.tabs__item {
-  padding: 10px 10px 0 10px;
-  font-weight: 500;
-  font-size: 15px;
-  color: #97979b;
-  text-decoration: none;
-}
-.active {
-  border-bottom: 2px solid #6534ff;
-  color: #050510;
-  font-weight: 600;
-}
 .person_link {
   text-decoration: none;
 }

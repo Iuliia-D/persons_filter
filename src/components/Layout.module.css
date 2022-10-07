@@ -1,3 +1,11 @@
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
 .tabs__list {
   display: flex;
   flex-direction: row;
@@ -12,6 +20,7 @@
   font-size: 15px;
   color: #97979b;
   text-decoration: none;
+  cursor: pointer;
 }
 .active {
   border-bottom: 2px solid #6534ff;

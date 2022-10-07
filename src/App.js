@@ -8,8 +8,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Layout from "./components/Layout";
 
 const sortTypes = {
-  abc: 1,
-  birthday: 2,
+  abc: "abc",
+  birthday: "birthday",
 };
 const tabsTypes = {
   all: "all",
@@ -26,6 +26,7 @@ function App() {
 
   const [currentPersons, setCurrentPersons] = useState([]);
   const [tabType, setTabType] = useState(tabsTypes.all);
+  const [isActive, setActive] = useState(tabsTypes.all);
   //const [sortType, setSortType] = useState(sortType.abc)
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -41,6 +42,7 @@ function App() {
 
   const toggleTab = (index) => {
     setTabType(index);
+    setActive(index);
   };
   console.log(tabType);
 
@@ -69,6 +71,7 @@ function App() {
               personQuery={personQuery}
               tabsTypes={tabsTypes}
               toggleTab={toggleTab}
+              isActive={isActive}
             />
           }
         >

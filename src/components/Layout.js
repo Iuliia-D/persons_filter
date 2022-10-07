@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-//import classes from "./Layout.module.css";
+import classes from "./Layout.module.css";
 import SearchBar from "./SearchBar";
 
 const Layout = ({
@@ -11,6 +11,7 @@ const Layout = ({
   birthday,
   tabsTypes,
   toggleTab,
+  isActive,
 }) => {
   return (
     <>
@@ -23,65 +24,80 @@ const Layout = ({
           personQuery={personQuery}
           birthday={birthday}
         />
-        <nav className="tabs__list">
+        <nav className={classes.tabs__list}>
           <button
-            className="tabs__item"
-            onClick={() => toggleTab(tabsTypes.all)}
+            className={
+              isActive === tabsTypes.all
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.all);
+            }}
           >
             Все
           </button>
           <button
-            className="tabs__item"
-            onClick={() => toggleTab(tabsTypes.design)}
+            className={
+              isActive === tabsTypes.design
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.design);
+            }}
           >
             Designers
           </button>
           <button
-            className="tabs__item"
-            onClick={() => toggleTab(tabsTypes.analytics)}
+            className={
+              isActive === tabsTypes.analytics
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.analytics);
+            }}
           >
             Analysts
           </button>
           <button
-            className="tabs__item"
-            onClick={() => toggleTab(tabsTypes.management)}
+            className={
+              isActive === tabsTypes.management
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.management);
+            }}
           >
             Managers
           </button>
           <button
-            className="tabs__item"
-            onClick={() => toggleTab(tabsTypes.ios)}
+            className={
+              isActive === tabsTypes.ios
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.ios);
+            }}
           >
             iOS
           </button>
           <button
-            className="tabs__item"
-            onClick={() => toggleTab(tabsTypes.android)}
+            className={
+              isActive === tabsTypes.android
+                ? `${classes.active} ${classes.tabs__item}`
+                : `${classes.tabs__item}`
+            }
+            onClick={() => {
+              toggleTab(tabsTypes.android);
+            }}
           >
             Android
           </button>
         </nav>
-
-        {/* <div className="tabs__list">
-          <NavLink to="/" end className="tabs__item">
-            Все
-          </NavLink>
-          <NavLink to="designers" className="tabs__item">
-            Designers
-          </NavLink>
-          <NavLink to="analists" className="tabs__item">
-            Analysts
-          </NavLink>
-          <NavLink to="managers" className="tabs__item">
-            Managers
-          </NavLink>
-          <NavLink to="ios" className="tabs__item">
-            iOS
-          </NavLink>
-          <NavLink to="android" className="tabs__item">
-            Android
-          </NavLink>
-        </div> */}
       </header>
 
       <Outlet />
