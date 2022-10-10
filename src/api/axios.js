@@ -7,7 +7,5 @@ export const api = axios.create({
 
 export const getPersons = async () => {
   const response = await api.get("");
-
-  console.log(response.data.items); // Delete later
   return response.data.items;
 };

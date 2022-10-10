@@ -29,7 +29,6 @@ function Modal({ active, setActive, sortTypes, handleSort }) {
           </button>
         </div>
 
-        {/* <p>{sortType}</p> */}
         <div className={classes.modal__body}>
           <div className={classes.input}>
             <input
