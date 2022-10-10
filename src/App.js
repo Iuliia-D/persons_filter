@@ -29,17 +29,9 @@ function App() {
   const [tabType, setTabType] = useState(tabsTypes.all);
   const [isActive, setActive] = useState(tabsTypes.all);
   const [sortType, setSortType] = useState(sortTypes.abc);
-  //const [monthDifference, setMonthDifference] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const personQuery = searchParams.get("person") || "";
-
-  // useEffect(() => {
-  //   getPersons().then((json) => {
-  //     setPersons(json);
-  //     setLoading(true);
-  //   });
-  // }, []);
 
   useEffect(() => {
     getPersons()
@@ -52,8 +44,6 @@ function App() {
         setErrorMassage(true);
       });
   }, []);
-
-  console.log(errorMassage, "404");
 
   const toggleTab = (index) => {
     setTabType(index);
@@ -73,21 +63,6 @@ function App() {
     );
     setCurrentPersons(curPersons);
   }, [personQuery, persons]);
-
-  // useEffect(() => {
-  //   persons.map((person) => {
-  //     const now = new Date();
-  //     const curMonth = now.getMonth();
-
-  //     const personBirthday = new Date(person.birthday);
-  //     const personBMonth = personBirthday.getMonth();
-
-  //     const difference = personBMonth - curMonth;
-
-  //     difference < 0 ? setMonthDifference(true) : setMonthDifference(false);
-  //     console.log(monthDifference);
-  //   });
-  // }, [persons]);
 
   return (
     <>

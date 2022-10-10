@@ -79,6 +79,14 @@
   gap: 5px;
   grid-template-columns: 30px auto;
 }
+
+.phone span a {
+  text-decoration: none;
+  color: #050510;
+}
+.phone span a:hover {
+  color: #6534ff;
+}
 .phone_icon {
   background-image: url("../img/phone.svg");
   background-repeat: no-repeat;

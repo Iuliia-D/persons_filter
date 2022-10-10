@@ -38,3 +38,21 @@ img {
   line-height: 20px;
   color: #55555c;
 }
+
+.line_container {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: auto 70px auto;
+  margin: 10px;
+}
+.line {
+  height: 0.5px;
+  margin-top: 9px;
+  border: 0.5px solid #c3c3c6;
+}
+.year {
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  color: #c3c3c6;
+}

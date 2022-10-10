@@ -11,13 +11,38 @@ const ListPage = ({
   sortType,
   errorMassage,
 }) => {
+  let nextYear = [];
+  let curYear = [];
+
+  const BirthdayWillBe = (currentPersons) => {
+    currentPersons.map((person) => {
+      const now = new Date();
+      const curMonth = now.getMonth(); // для проверки работопособности можно сделать "-7". Т.к. в данный момент все дни рождения в следующем году и не видно разделителя
+
+      const personBirthday = new Date(person.birthday);
+      const personBMonth = personBirthday.getMonth();
+
+      const difference = personBMonth - curMonth;
+
+      difference < 0 ? nextYear.push(person) : curYear.push(person);
+    });
+    return curYear, nextYear;
+  };
+
   const sortFunction = (currentPersons, sortType) => {
+    BirthdayWillBe(currentPersons);
     if (sortType === "abc" && tabType === "all") {
       return currentPersons
         .sort((a, b) => (a.firstName > b.firstName ? 1 : -1))
         .map((person) => (
           <Link key={person.id} to={`/${person.id}`} className="person_link">
-            <Person key={person.id} person={person} sortType={sortType} />
+            <Person
+              key={person.id}
+              person={person}
+              sortType={sortType}
+              nextYear={nextYear}
+              curYear={curYear}
+            />
           </Link>
         ));
     } else if (sortType === "abc") {
@@ -26,7 +51,13 @@ const ListPage = ({
         .sort((a, b) => (a.firstName > b.firstName ? 1 : -1))
         .map((person) => (
           <Link key={person.id} to={`/${person.id}`} className="person_link">
-            <Person key={person.id} person={person} sortType={sortType} />
+            <Person
+              key={person.id}
+              person={person}
+              sortType={sortType}
+              nextYear={nextYear}
+              curYear={curYear}
+            />
           </Link>
         ));
     } else if (sortType === "birthday" && tabType === "all") {
@@ -34,7 +65,13 @@ const ListPage = ({
         .sort((a, b) => (a.birthday < b.birthday ? 1 : -1))
         .map((person) => (
           <Link key={person.id} to={`/${person.id}`} className="person_link">
-            <Person key={person.id} person={person} sortType={sortType} />
+            <Person
+              key={person.id}
+              person={person}
+              sortType={sortType}
+              nextYear={nextYear}
+              curYear={curYear}
+            />
           </Link>
         ));
     } else if (sortType === "birthday") {
@@ -43,7 +80,13 @@ const ListPage = ({
         .sort((a, b) => (a.birthday > b.birthday ? 1 : -1))
         .map((person) => (
           <Link key={person.id} to={`/${person.id}`} className="person_link">
-            <Person key={person.id} person={person} sortType={sortType} />
+            <Person
+              key={person.id}
+              person={person}
+              sortType={sortType}
+              nextYear={nextYear}
+              curYear={curYear}
+            />
           </Link>
         ));
     } else {
@@ -56,6 +99,7 @@ const ListPage = ({
   };
 
   const sortedCurPersons = sortFunction(currentPersons, sortType);
+
   const content = sortedCurPersons?.length ? (
     sortedCurPersons
   ) : (

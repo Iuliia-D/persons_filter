@@ -1,6 +1,9 @@
 import classes from "./Person.module.css";
 
-const Person = ({ person, sortType }) => {
+const Person = ({ person, sortType, curYear, nextYear }) => {
+  console.log("в следующем году: ", nextYear);
+  console.log("в этом году: ", curYear);
+
   const birthFormat = (dateString) => {
     let birthday = new Date(dateString);
     let birth = birthday.toLocaleDateString("default", {
@@ -9,6 +12,14 @@ const Person = ({ person, sortType }) => {
     });
     return birth;
   };
+
+  const now = new Date();
+  const nextYearLabel = (now) => {
+    const nowYear = now.getFullYear();
+    const nextYear = nowYear + 1;
+    return nextYear;
+  };
+  console.log(nextYearLabel(now));
 
   return (
     <>
@@ -30,6 +41,21 @@ const Person = ({ person, sortType }) => {
           )}
         </div>
       </article>
+      <div>
+        {sortType === "birthday" &&
+        curYear.includes(person) &&
+        curYear.indexOf(person) === 0 ? (
+          <div className={classes.line_container}>
+            <div className={classes.line}></div>
+
+            <span className={classes.year}>{nextYearLabel(now)}</span>
+
+            <div className={classes.line}></div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </>
   );
 };
