@@ -2,8 +2,15 @@ import { Link } from "react-router-dom";
 import Person from "./Person";
 import NotFoundPage from "./NotFoundPage";
 import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
 
-const ListPage = ({ loading, currentPersons, tabType, sortType }) => {
+const ListPage = ({
+  loading,
+  currentPersons,
+  tabType,
+  sortType,
+  errorMassage,
+}) => {
   const sortFunction = (currentPersons, sortType) => {
     if (sortType === "abc" && tabType === "all") {
       return currentPersons
@@ -57,7 +64,15 @@ const ListPage = ({ loading, currentPersons, tabType, sortType }) => {
 
   return (
     <div>
-      <main>{loading ? content : <LoadingPage />}</main>
+      <main>
+        {errorMassage === true ? (
+          <ErrorPage />
+        ) : loading ? (
+          content
+        ) : (
+          <LoadingPage />
+        )}
+      </main>
     </div>
   );
 };

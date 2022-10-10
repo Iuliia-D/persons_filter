@@ -22,6 +22,7 @@ const tabsTypes = {
 
 function App() {
   const [persons, setPersons] = useState([]);
+  const [errorMassage, setErrorMassage] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [currentPersons, setCurrentPersons] = useState([]);
@@ -33,12 +34,26 @@ function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const personQuery = searchParams.get("person") || "";
 
+  // useEffect(() => {
+  //   getPersons().then((json) => {
+  //     setPersons(json);
+  //     setLoading(true);
+  //   });
+  // }, []);
+
   useEffect(() => {
-    getPersons().then((json) => {
-      setPersons(json);
-      setLoading(true);
-    });
+    getPersons()
+      .then((json) => {
+        setPersons(json);
+        setLoading(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMassage(true);
+      });
   }, []);
+
+  console.log(errorMassage, "404");
 
   const toggleTab = (index) => {
     setTabType(index);
@@ -106,6 +121,7 @@ function App() {
                 currentPersons={currentPersons}
                 tabType={tabType}
                 sortType={sortType}
+                errorMassage={errorMassage}
               />
             }
           />

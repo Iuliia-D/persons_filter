@@ -3,6 +3,7 @@ import axios from "axios";
 import classes from "./DetailsPage.module.css";
 import ArrowBackSvg from "../components/ArrowBackSvg";
 import { useEffect, useState } from "react";
+import LoadingDetailsPage from "./LoadingDetailsPage";
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -52,7 +53,9 @@ const DetailsPage = () => {
   return (
     <>
       {persons.length === 0 ? (
-        <div>Loading...</div>
+        <div>
+          <LoadingDetailsPage />
+        </div>
       ) : (
         persons.map((curPerson) =>
           curPerson.id === id ? (
