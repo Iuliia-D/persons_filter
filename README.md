@@ -1,3 +1,6 @@
+# Демо-версия приложения
+https://persons-filter.vercel.app/
+
 # Декомпозиция
 
 1. Создать React-app, настроить файловую структуру, создать репозиторий на гитхаб, подключить библиотеки (npm install react-router-dom@6, npm install axios) - 1ч
