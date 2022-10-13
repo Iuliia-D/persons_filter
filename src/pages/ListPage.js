@@ -21,12 +21,11 @@ const ListPage = ({
 
       const personBirthday = new Date(person.birthday);
       const personBMonth = personBirthday.getMonth();
-
       const difference = personBMonth - curMonth;
 
       difference < 0 ? nextYear.push(person) : curYear.push(person);
     });
-    return curYear, nextYear;
+    return { curYear, nextYear };
   };
 
   const sortFunction = (currentPersons, sortType) => {

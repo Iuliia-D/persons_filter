@@ -27,6 +27,7 @@ header {
   font-weight: 500;
   font-size: 15px;
   color: #050510;
+  caret-color: #6534ff;
 }
 ::placeholder {
   color: #c3c3c6;

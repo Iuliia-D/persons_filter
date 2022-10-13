@@ -30,8 +30,7 @@ button {
 }
 @media (min-width: 319px) and (max-width: 768px) {
   .tabs__list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    place-content: center;
+    height: 70px;
+    overflow-x: auto;
   }
 }

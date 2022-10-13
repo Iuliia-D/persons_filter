@@ -33,7 +33,7 @@ const Person = ({ person, sortType, curYear, nextYear }) => {
           </p>
           <p className={classes.text_gray}>{person.position}</p>
         </div>
-        <div>
+        <div className={classes.birthday_container}>
           {sortType === "birthday" ? (
             <p className={classes.birthday}>{birthFormat(person.birthday)}</p>
           ) : (

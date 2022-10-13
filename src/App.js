@@ -24,13 +24,12 @@ function App() {
   const [persons, setPersons] = useState([]);
   const [errorMassage, setErrorMassage] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const [currentPersons, setCurrentPersons] = useState([]);
   const [tabType, setTabType] = useState(tabsTypes.all);
   const [isActive, setActive] = useState(tabsTypes.all);
   const [sortType, setSortType] = useState(sortTypes.abc);
-
   const [searchParams, setSearchParams] = useSearchParams();
+
   const personQuery = searchParams.get("person") || "";
 
   useEffect(() => {
@@ -71,12 +70,8 @@ function App() {
           path="/"
           element={
             <Layout
-              persons={persons}
               setSearchParams={setSearchParams}
-              searchParams={searchParams}
-              personQuery={personQuery}
               tabsTypes={tabsTypes}
-              tabType={tabType}
               toggleTab={toggleTab}
               isActive={isActive}
               sortType={sortType}
@@ -90,9 +85,6 @@ function App() {
             element={
               <ListPage
                 loading={loading}
-                persons={persons}
-                searchParams={searchParams}
-                personQuery={personQuery}
                 currentPersons={currentPersons}
                 tabType={tabType}
                 sortType={sortType}
@@ -104,7 +96,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 
-        <Route path="/:id" element={<DetailsPage persons={persons} />} />
+        <Route path="/:id" element={<DetailsPage />} />
       </Routes>
     </>
   );

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import classes from "./SearchBar.module.css";
 import { ReactComponent as Search } from "../icon/search-icon.svg";
-import FilterSvg from "../components/FilterSvg";
+import { ReactComponent as Filter } from "../icon/filter-icon.svg";
 import Modal from "../components/Modal";
 
-function SearchBar({ setSearchParams, sortTypes, handleSort }) {
+function SearchBar({ setSearchParams, sortTypes, handleSort, sortType }) {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -46,7 +46,13 @@ function SearchBar({ setSearchParams, sortTypes, handleSort }) {
           className={classes.filter__button}
           onClick={() => setModalActive(true)}
         >
-          <FilterSvg />
+          <Filter
+            style={
+              sortType === "birthday"
+                ? { color: "#6534FF" }
+                : { color: "#c3c3c6" }
+            }
+          />
         </button>
         <Modal
           active={modalActive}

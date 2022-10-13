@@ -3,14 +3,8 @@ import classes from "./Layout.module.css";
 import SearchBar from "./SearchBar";
 
 const Layout = ({
-  persons,
-  setModalActive,
   setSearchParams,
-  searchParams,
-  personQuery,
-  birthday,
   tabsTypes,
-  tabType,
   toggleTab,
   isActive,
   sortType,
@@ -21,15 +15,10 @@ const Layout = ({
     <>
       <header>
         <SearchBar
-          persons={persons}
-          setModalActive={setModalActive}
           setSearchParams={setSearchParams}
-          searchParams={searchParams}
-          personQuery={personQuery}
-          birthday={birthday}
-          sortType={sortType}
-          handleSort={handleSort}
           sortTypes={sortTypes}
+          handleSort={handleSort}
+          sortType={sortType}
         />
         <nav className={classes.tabs__list}>
           <button
