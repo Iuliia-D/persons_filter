@@ -90,7 +90,7 @@ const DetailsPage = () => {
                 <div className={classes.phone}>
                   <div className={classes.phone_icon}></div>
                   <span className={classes.phone_number}>
-                    <a href="tel: curPerson.phone">
+                    <a href={`tel: ${curPerson.firstName}`}>
                       {phoneFormat(curPerson.phone)}
                     </a>
                   </span>
